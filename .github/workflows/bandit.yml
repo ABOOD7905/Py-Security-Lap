@@ -1,0 +1,19 @@
+name: Bandit Scan
+
+on:
+  push:
+    branches: [ "main" ]
+  pull_request:
+    branches: [ "main" ]
+  schedule:
+    - cron: "0 0 * * 0"
+
+jobs:
+  bandit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Run Bandit
+        uses: pyupio/action-bandit@v1
+        with:
+          args: "-r ."
